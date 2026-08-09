@@ -40,21 +40,7 @@ export const ContributorGrid: React.FC<ContributorGridProps> = ({ contributors }
       transition={{ duration: 0.4, delay: 0.25 }}
       className="space-y-4"
     >
-      <div className="flex items-center justify-between pb-1">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
-            <Users className="w-4 h-4 text-cyan-400" />
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-white font-sans">
-              Contributor Workload Dashboard
-            </h3>
-            <p className="text-xs text-slate-400 font-medium">
-              Showing {contributors.length} active maintainers and their workload risk status
-            </p>
-          </div>
-        </div>
-      </div>
+
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {contributors.map((c, idx) => (

@@ -13,79 +13,80 @@ export const AIInsightsSection: React.FC<AIInsightsSectionProps> = ({ insights }
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.2 }}
-      className="glass-card p-6 sm:p-8 relative overflow-hidden"
+      className="glass-card p-6 sm:p-7 relative overflow-hidden"
     >
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center shadow-lg shadow-cyan-500/10">
-            <Sparkles className="w-5 h-5 text-cyan-400" />
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-white flex items-center gap-2 font-sans">
-              AI Repository Workload Insights
-            </h3>
-            <p className="text-xs text-slate-400 font-medium">
-              Natural language intelligence generated from repository commit history & workload statistics
-            </p>
-          </div>
-        </div>
-
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
-          <Bot className="w-3.5 h-3.5" />
-          <span>{insights.generated_by}</span>
-        </span>
-      </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left Column */}
-        <div className="space-y-4">
-          <div className="p-4.5 rounded-2xl bg-white/5 border border-white/10">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-cyan-400 mb-2 flex items-center gap-1.5">
-              <Compass className="w-4 h-4" />
-              <span>Repository Overview</span>
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+        <div className="space-y-5">
+          {/* Repository Overview */}
+          <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-900/50 border border-white/10 hover:border-cyan-500/30 transition-all shadow-md">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-6 h-6 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
+                <Compass className="w-3.5 h-3.5 text-cyan-400" />
+              </div>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-cyan-400">
+                Repository Overview
+              </h4>
+            </div>
+            <p className="text-[13.5px] sm:text-[14px] text-slate-200 leading-relaxed font-normal">
               {insights.repo_summary}
             </p>
           </div>
 
-          <div className="p-4.5 rounded-2xl bg-white/5 border border-white/10">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-purple-400 mb-2 flex items-center gap-1.5">
-              <AlertTriangle className="w-4 h-4" />
-              <span>Knowledge & Ownership Balance</span>
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-2 font-medium">
-              {insights.knowledge_risks}
-            </p>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-medium">
-              {insights.ownership_issues}
-            </p>
+          {/* Knowledge & Ownership Balance */}
+          <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-900/50 border border-white/10 hover:border-purple-500/30 transition-all shadow-md">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-6 h-6 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center">
+                <AlertTriangle className="w-3.5 h-3.5 text-purple-400" />
+              </div>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-purple-400">
+                Knowledge & Ownership Balance
+              </h4>
+            </div>
+            <div className="space-y-3 text-[13.5px] sm:text-[14px] text-slate-200 leading-relaxed font-normal">
+              <p>{insights.knowledge_risks}</p>
+              {insights.ownership_issues && (
+                <p className="text-slate-300 border-t border-white/5 pt-3">
+                  {insights.ownership_issues}
+                </p>
+              )}
+            </div>
           </div>
         </div>
 
         {/* Right Column */}
-        <div className="space-y-4">
-          <div className="p-4.5 rounded-2xl bg-white/5 border border-white/10">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-emerald-400 mb-2.5 flex items-center gap-1.5">
-              <CheckCircle className="w-4 h-4" />
-              <span>Engineering Recommendations</span>
-            </h4>
-            <ul className="space-y-2">
+        <div className="space-y-5">
+          {/* Engineering Recommendations */}
+          <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-900/50 border border-white/10 hover:border-emerald-500/30 transition-all shadow-md">
+            <div className="flex items-center gap-2 mb-3.5">
+              <div className="w-6 h-6 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
+                <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+              </div>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+                Engineering Recommendations
+              </h4>
+            </div>
+            <ul className="space-y-3">
               {insights.engineering_recommendations.map((rec, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200 font-medium">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 shrink-0 shadow-sm shadow-emerald-400/50" />
+                <li key={i} className="flex items-start gap-3 text-[13.5px] sm:text-[14px] text-slate-200 font-normal leading-relaxed">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 mt-2 shrink-0 shadow-sm shadow-emerald-400/50" />
                   <span>{rec}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="p-4.5 rounded-2xl bg-white/5 border border-white/10">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-amber-400 mb-2 flex items-center gap-1.5">
-              <Lightbulb className="w-4 h-4" />
-              <span>Future Risks</span>
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+          {/* Future Risks */}
+          <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-900/50 border border-white/10 hover:border-amber-500/30 transition-all shadow-md">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-6 h-6 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center">
+                <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
+              </div>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-amber-400">
+                Future Risks & Bottlenecks
+              </h4>
+            </div>
+            <p className="text-[13.5px] sm:text-[14px] text-slate-200 leading-relaxed font-normal">
               {insights.future_risks}
             </p>
           </div>
@@ -94,3 +95,4 @@ export const AIInsightsSection: React.FC<AIInsightsSectionProps> = ({ insights }
     </motion.div>
   );
 };
+

@@ -19,10 +19,13 @@ export default {
         }
       },
       fontFamily: {
-        sans: ["Outfit", "-apple-system", "BlinkMacSystemFont", "Inter", "sans-serif"],
-        mono: ["JetBrains Mono", "SF Mono", "monospace"]
+        sans: ["'Plus Jakarta Sans'", "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        heading: ["'Plus Jakarta Sans'", "sans-serif"],
+        body: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        mono: ["'JetBrains Mono'", "SF Mono", "monospace"]
       }
     },
   },
   plugins: [],
 }
+

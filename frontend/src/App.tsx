@@ -9,8 +9,9 @@ import { ContributorGrid } from './components/ContributorGrid';
 import { LoadingSkeleton } from './components/LoadingSkeleton';
 import { CollapsibleSection } from './components/CollapsibleSection';
 import { analyzeRepository, getExportCsvUrl, getExportPdfUrl } from './services/api';
+
 import { RepositoryAnalysisResult } from './types';
-import { AlertCircle, RefreshCw, Github, Activity, Compass, Users, Sliders, Calendar, Network, Code2 } from 'lucide-react';
+import { AlertCircle, RefreshCw, Github, Activity, Compass, Users, Sliders, Calendar, Network, Code2, Bot, Sparkles, ArrowRight } from 'lucide-react';
 
 // Code-Split Heavy Visualization Components for Performance Optimization
 const ActivityTimeline = lazy(() => import('./components/ActivityTimeline').then(m => ({ default: m.ActivityTimeline })));
@@ -22,11 +23,6 @@ export const App: React.FC = () => {
   const [analysis, setAnalysis] = useState<RepositoryAnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-
-  // Initial load default analysis (facebook/react preset)
-  useEffect(() => {
-    handleAnalyze('https://github.com/facebook/react.git');
-  }, []);
 
   const handleAnalyze = async (repoUrl: string, token: string = '') => {
     setIsLoading(true);
@@ -77,7 +73,7 @@ export const App: React.FC = () => {
               <span className="text-sm font-medium">{error}</span>
             </div>
             <button
-              onClick={() => handleAnalyze(analysis?.repo_url || 'https://github.com/facebook/react.git')}
+              onClick={() => handleAnalyze('https://github.com/facebook/react.git')}
               className="text-xs px-3 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-200 border border-rose-500/40 flex items-center gap-1.5 transition-all"
             >
               <RefreshCw className="w-3.5 h-3.5" />
@@ -88,6 +84,126 @@ export const App: React.FC = () => {
 
         {/* Loading State */}
         {isLoading && <LoadingSkeleton />}
+
+        {/* Welcome State when no repository is analyzed yet */}
+        {!isLoading && !analysis && (
+          <div className="space-y-8 max-w-5xl mx-auto pt-2 pb-8">
+            {/* Preset Showcase */}
+            <div>
+              <div className="flex items-center justify-between mb-4 px-1">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-cyan-400" />
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300">
+                    Quick Preset Repositories
+                  </h3>
+                </div>
+                <span className="text-xs text-slate-500">Click to analyze instantly</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  {
+                    name: "facebook/react",
+                    desc: "React UI component library",
+                    lang: "JavaScript / TypeScript",
+                    color: "from-cyan-500/20 to-blue-500/10",
+                    border: "hover:border-cyan-500/50",
+                    url: "https://github.com/facebook/react.git",
+                    tag: "Frontend Core"
+                  },
+                  {
+                    name: "fastapi/fastapi",
+                    desc: "Modern high-performance web API",
+                    lang: "Python",
+                    color: "from-teal-500/20 to-emerald-500/10",
+                    border: "hover:border-teal-500/50",
+                    url: "https://github.com/fastapi/fastapi.git",
+                    tag: "Backend API"
+                  },
+                  {
+                    name: "pallets/flask",
+                    desc: "WSGI web application microframework",
+                    lang: "Python",
+                    color: "from-purple-500/20 to-indigo-500/10",
+                    border: "hover:border-purple-500/50",
+                    url: "https://github.com/pallets/flask.git",
+                    tag: "Microframework"
+                  },
+                  {
+                    name: "vercel/next.js",
+                    desc: "Fullstack React production framework",
+                    lang: "TypeScript",
+                    color: "from-slate-700/30 to-slate-800/20",
+                    border: "hover:border-white/40",
+                    url: "https://github.com/vercel/next.js.git",
+                    tag: "Fullstack"
+                  }
+                ].map((preset) => (
+                  <button
+                    key={preset.name}
+                    onClick={() => handleAnalyze(preset.url)}
+                    className={`text-left p-5 rounded-2xl bg-gradient-to-br ${preset.color} bg-slate-900/60 border border-white/10 ${preset.border} transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl relative overflow-hidden`}
+                  >
+                    <div className="flex items-center justify-between text-[11px] font-mono text-cyan-400 mb-2 font-semibold">
+                      <span>{preset.tag}</span>
+                      <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    </div>
+                    <h4 className="text-sm font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors font-mono truncate">
+                      {preset.name}
+                    </h4>
+                    <p className="text-xs text-slate-400 mb-3 line-clamp-2">
+                      {preset.desc}
+                    </p>
+                    <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-500">
+                      <span className="w-2 h-2 rounded-full bg-cyan-400/80" />
+                      <span>{preset.lang}</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Core Capabilities */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+              <div className="p-6 rounded-2xl glass-card border border-white/10 hover:border-cyan-500/30 transition-all">
+                <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3.5 text-cyan-400">
+                  <Activity className="w-5 h-5" />
+                </div>
+                <h4 className="text-sm font-bold text-white mb-1.5">
+                  Engineering Health & Bus Factor
+                </h4>
+                <p className="text-xs text-slate-400 leading-relaxed font-normal">
+                  Evaluates Gini ownership concentration, single-maintainer bottlenecks, and minimum contributors required to maintain 60%+ code knowledge.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl glass-card border border-white/10 hover:border-purple-500/30 transition-all">
+                <div className="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center mb-3.5 text-purple-400">
+                  <Sliders className="w-5 h-5" />
+                </div>
+                <h4 className="text-sm font-bold text-white mb-1.5">
+                  Explainable ML Risk Classifier
+                </h4>
+                <p className="text-xs text-slate-400 leading-relaxed font-normal">
+                  Random Forest ML model coupled with SHAP TreeExplainer feature importance calculating exact factors impacting workload risk.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl glass-card border border-white/10 hover:border-cyan-500/30 transition-all">
+                <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-3.5 text-cyan-400">
+                  <Compass className="w-5 h-5" />
+                </div>
+                <h4 className="text-sm font-bold text-white mb-1.5">
+                  Gemini Architectural Insights
+                </h4>
+                <p className="text-xs text-slate-400 leading-relaxed font-normal">
+                  Structured AI engineering summaries, critical knowledge bottleneck alerts, and actionable team workload recommendations.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
 
         {/* Loaded Analysis Dashboard */}
         {!isLoading && analysis && (
@@ -132,9 +248,15 @@ export const App: React.FC = () => {
 
             {/* 3. AI Insights Section */}
             <CollapsibleSection
-              title="Repository Insights & Recommendations"
-              subtitle="Architectural findings, knowledge risks, and actionable recommendations"
-              icon={<Compass className="w-4 h-4 text-cyan-400" />}
+              title="AI Workload Insights & Recommendations"
+              subtitle="Natural language architectural findings, knowledge risks, and actionable recommendations"
+              icon={<Sparkles className="w-4 h-4 text-cyan-400" />}
+              rightAction={
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                  <Bot className="w-3.5 h-3.5" />
+                  <span>{analysis.ai_insights.generated_by}</span>
+                </span>
+              }
             >
               <AIInsightsSection insights={analysis.ai_insights} />
             </CollapsibleSection>
@@ -158,8 +280,8 @@ export const App: React.FC = () => {
 
               {/* 5. Commit Activity Heatmap */}
               <CollapsibleSection
-                title="7-Day Activity Heatmap"
-                subtitle="Commit frequency intensity across hours and days"
+                title="7-Day Commit Activity Heatmap"
+                subtitle="Commit frequency intensity across 24 hours and 7 days"
                 icon={<Calendar className="w-4 h-4 text-purple-400" />}
               >
                 <CommitHeatmap matrix={analysis.heatmap_matrix} />
@@ -167,8 +289,8 @@ export const App: React.FC = () => {
 
               {/* 6. Module Network Map */}
               <CollapsibleSection
-                title="Module Network Map"
-                subtitle="Architectural module assignments across maintainers"
+                title="Maintainer & Module Network Map"
+                subtitle="Architectural module assignments and ownership distribution across maintainers"
                 icon={<Network className="w-4 h-4 text-cyan-400" />}
               >
                 <ContributorGraph
@@ -178,16 +300,22 @@ export const App: React.FC = () => {
               </CollapsibleSection>
             </Suspense>
 
-            {/* 7. LAST SECTION: Maintainers Dashboard */}
+            {/* 7. Maintainers Dashboard */}
             <CollapsibleSection
-              title="Maintainers Dashboard"
-              subtitle="Detailed breakdown of individual maintainer contributions and workload"
+              title="Maintainers Workload Dashboard"
+              subtitle={`Detailed breakdown of ${analysis.contributors.length} active maintainers and their workload risk status`}
               icon={<Users className="w-4 h-4 text-cyan-400" />}
+              rightAction={
+                <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300">
+                  {analysis.contributors.length} Maintainers
+                </span>
+              }
             >
               <ContributorGrid
                 contributors={analysis.contributors}
               />
             </CollapsibleSection>
+
           </div>
         )}
       </main>

@@ -19,21 +19,7 @@ export const ContributorGraph: React.FC<ContributorGraphProps> = ({ nodes, edges
       transition={{ duration: 0.4, delay: 0.45 }}
       className="glass-card p-6"
     >
-      <div className="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center">
-            <Network className="w-4 h-4 text-purple-400" />
-          </div>
-          <div>
-            <h3 className="text-base font-bold text-white font-sans">
-              Contributor & Module Ownership Network Graph
-            </h3>
-            <p className="text-xs text-slate-400 font-medium">
-              Interactive relationship map linking maintainers to specific codebase architectural modules
-            </p>
-          </div>
-        </div>
-      </div>
+
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         {/* Contributor Column */}

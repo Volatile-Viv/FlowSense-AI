@@ -16,20 +16,20 @@ export const ActivityTimeline: React.FC<ActivityTimelineProps> = ({ timeline }) 
       transition={{ duration: 0.4, delay: 0.3 }}
       className="glass-card p-6"
     >
-      <div className="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
-            <Activity className="w-4 h-4 text-cyan-400" />
+      <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center gap-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400/50" />
+            <span className="font-semibold text-slate-200">Daily Commits</span>
           </div>
-          <div>
-            <h3 className="text-base font-bold text-white font-sans">
-              Commit Frequency & Code Churn Timeline
-            </h3>
-            <p className="text-xs text-slate-400 font-medium">
-              Historical commit activity and line addition/deletion velocity across analyzed period
-            </p>
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-purple-400 shadow-sm shadow-purple-400/50" />
+            <span className="font-semibold text-slate-200">Lines Changed (Code Churn)</span>
           </div>
         </div>
+        <span className="text-[11px] font-mono text-slate-400">
+          Last {timeline.length} Days Activity
+        </span>
       </div>
 
       <div className="w-full h-72">

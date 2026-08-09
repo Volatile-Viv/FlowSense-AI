@@ -18,21 +18,15 @@ export const MLRiskExplanation: React.FC<MLRiskExplanationProps> = ({ features }
       transition={{ duration: 0.4, delay: 0.1 }}
       className="glass-card p-6"
     >
-      <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center">
-            <Sliders className="w-4 h-4 text-purple-400" />
-          </div>
-          <div>
-            <h3 className="text-base font-bold text-white font-sans">
-              SHAP Explainable AI Feature Drivers
-            </h3>
-            <p className="text-xs text-slate-400 font-medium">
-              Primary Machine Learning metrics contributing to risk classification
-            </p>
-          </div>
-        </div>
+      <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/5">
+        <span className="text-xs font-bold uppercase tracking-wider text-purple-400">
+          SHAP Feature Risk Drivers
+        </span>
+        <span className="text-[11px] font-mono text-slate-400">
+          {features.length} features evaluated
+        </span>
       </div>
+
 
       <div className="space-y-3.5">
         {features.map((feat, idx) => {

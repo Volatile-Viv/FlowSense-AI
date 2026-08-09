@@ -27,24 +27,11 @@ export const BusFactorCard: React.FC<BusFactorCardProps> = ({
       className="glass-card p-6 flex flex-col justify-between"
     >
       <div>
-        <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
-          <div className="flex items-center gap-3">
-            <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
-              isHighRisk ? 'bg-rose-500/10 text-rose-400 border border-rose-500/30' : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30'
-            }`}>
-              <Users className="w-4 h-4" />
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-white font-sans">
-                Bus Factor Assessment
-              </h3>
-              <p className="text-xs text-slate-400 font-medium">
-                Minimum maintainers holding &gt;60% of codebase knowledge
-              </p>
-            </div>
-          </div>
-
-          <span className={`px-3 py-1 rounded-full text-xs font-bold font-mono border ${
+        <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/5">
+          <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">
+            Bus Factor & Knowledge Concentration
+          </span>
+          <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold font-mono border ${
             isHighRisk 
               ? 'bg-rose-500/20 text-rose-400 border-rose-500/30' 
               : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
@@ -52,6 +39,7 @@ export const BusFactorCard: React.FC<BusFactorCardProps> = ({
             Bus Factor = {busFactor}
           </span>
         </div>
+
 
         {/* Maintainers Avatars List */}
         <div className="space-y-3 mb-5">

@@ -34,21 +34,23 @@ export const CommitHeatmap: React.FC<CommitHeatmapProps> = ({ matrix }) => {
       transition={{ duration: 0.4, delay: 0.35 }}
       className="glass-card p-6 overflow-x-auto"
     >
-      <div className="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center">
-            <Calendar className="w-4 h-4 text-purple-400" />
+      <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/5">
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
+          Hourly Distribution (UTC)
+        </span>
+        <div className="flex items-center gap-2 text-[11px] text-slate-400 font-medium">
+          <span>Less</span>
+          <div className="flex items-center gap-1">
+            <span className="w-3 h-3 rounded bg-white/5 border border-white/10" />
+            <span className="w-3 h-3 rounded bg-cyan-950/90 border border-cyan-700/50" />
+            <span className="w-3 h-3 rounded bg-cyan-700/90 border border-cyan-500/60" />
+            <span className="w-3 h-3 rounded bg-purple-600 border border-purple-400" />
+            <span className="w-3 h-3 rounded bg-rose-500 border border-rose-300" />
           </div>
-          <div>
-            <h3 className="text-base font-bold text-white font-sans">
-              7-Day Commit Activity Heatmap Matrix
-            </h3>
-            <p className="text-xs text-slate-400 font-medium">
-              Hour x Day commit intensity highlighting off-hours and weekend workload clusters
-            </p>
-          </div>
+          <span>More Commits</span>
         </div>
       </div>
+
 
       <div className="min-w-[640px]">
         <div className="grid grid-cols-[80px_repeat(24,1fr)] gap-1 text-center font-mono text-[10px] text-slate-300 font-semibold mb-2">

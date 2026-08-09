@@ -16,21 +16,15 @@ export const LanguageBreakdown: React.FC<LanguageBreakdownProps> = ({ languages 
       transition={{ duration: 0.4, delay: 0.4 }}
       className="glass-card p-6 flex flex-col justify-between"
     >
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
-            <Code2 className="w-4 h-4 text-cyan-400" />
-          </div>
-          <div>
-            <h3 className="text-base font-bold text-white font-sans">
-              Language Composition
-            </h3>
-            <p className="text-xs text-slate-400 font-medium">
-              Repository codebase breakdown across file extensions
-            </p>
-          </div>
-        </div>
+      <div className="flex items-center justify-between mb-4">
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
+          Codebase Languages
+        </span>
+        <span className="text-[11px] font-mono text-slate-400">
+          {languages.length} detected
+        </span>
       </div>
+
 
       <div className="w-full h-52">
         <ResponsiveContainer width="100%" height="100%">

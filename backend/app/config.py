@@ -1,4 +1,8 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+load_dotenv("../.env")
 
 class Settings:
     PROJECT_NAME: str = "FlowSense AI"
@@ -8,3 +12,4 @@ class Settings:
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./flowsense.db")
 
 settings = Settings()
+
